@@ -39,12 +39,15 @@ const plantsArray = [
   }
 ];
 
-function ProductList() {
+function ProductList({ onHome, onPlants, onCart }) {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const [addedToCart, setAddedToCart] = useState({});
 
-
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   const handleAddToCart = (plant) => {
     dispatch(addItem({
@@ -63,7 +66,18 @@ function ProductList() {
 
   return (
     <div className="product-page">
-     
+
+      <nav className="navbar">
+        <h2 onClick={onHome}>🌿 Paradise Nursery</h2>
+
+        <div className="nav-links">
+          <button onClick={onHome}>Home</button>
+          <button onClick={onPlants}>Plants</button>
+          <button onClick={onCart}>
+            🛒 Cart ({cartCount})
+          </button>
+        </div>
+      </nav>
 
       <div id="plants">
         <h1>Our Beautiful Houseplants</h1>
@@ -72,7 +86,7 @@ function ProductList() {
         </p>
 
         {plantsArray.map((category, index) => (
-          <section className="plant-category" key={index}>
+          <section className="product-list plant-category" key={index}>
             <h2>{category.category}</h2>
 
             <div className="product-grid">

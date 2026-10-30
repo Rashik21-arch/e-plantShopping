@@ -12,6 +12,7 @@ import "./App.css";
 
 function App() {
   const [page, setPage] = useState("home");
+  const [showProductList, setShowProductList] = useState(false);
 
   const cartItems = useSelector((state) => state.cart.items);
 
@@ -21,33 +22,62 @@ function App() {
   );
 
   const handleGetStartedClick = () => {
+    setShowProductList(true);
     setPage("plants");
+  };
+
+  const handleHome = () => {
+    setShowProductList(false);
+    setPage("home");
+  };
+
+  const handlePlants = () => {
+    setShowProductList(true);
+    setPage("plants");
+  };
+
+  const handleCart = () => {
+    setPage("cart");
   };
 
   return (
     <div className="app-container">
-      <Navbar
-        cartCount={cartCount}
-        onHome={() => setPage("home")}
-        onPlants={() => setPage("plants")}
-        onCart={() => setPage("cart")}
-      />
 
       {page === "home" && (
         <>
+          <Navbar
+            cartCount={cartCount}
+            onHome={handleHome}
+            onPlants={handlePlants}
+            onCart={handleCart}
+          />
+
           <h1 className="welcome-heading">
             Welcome to Paradise Nursery
           </h1>
+
           <LandingPage onGetStarted={handleGetStartedClick} />
           <AboutUs />
         </>
       )}
 
-      {page === "plants" && <ProductList />}
+      {page === "plants" && showProductList && (
+        <ProductList
+          onHome={handleHome}
+          onPlants={handlePlants}
+          onCart={handleCart}
+        />
+      )}
 
       {page === "cart" && (
-        <CartItem onContinueShopping={() => setPage("plants")} />
+        <CartItem
+          onHome={handleHome}
+          onPlants={handlePlants}
+          onCart={handleCart}
+          onContinueShopping={handlePlants}
+        />
       )}
+
     </div>
   );
 }

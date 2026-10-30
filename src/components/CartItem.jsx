@@ -6,11 +6,21 @@ import {
   updateQuantity,
 } from "../features/CartSlice";
 
-function CartItem({ onContinueShopping }) {
+function CartItem({
+  onHome,
+  onPlants,
+  onCart,
+  onContinueShopping,
+}) {
   const dispatch = useDispatch();
 
   const cartItems = useSelector(
     (state) => state.cart.items
+  );
+
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
   );
 
   const handleIncrement = (item) => {
@@ -43,6 +53,19 @@ function CartItem({ onContinueShopping }) {
 
   return (
     <div className="cart-container">
+
+      <nav className="navbar">
+        <h2 onClick={onHome}>🌿 Paradise Nursery</h2>
+
+        <div className="nav-links">
+          <button onClick={onHome}>Home</button>
+          <button onClick={onPlants}>Plants</button>
+          <button onClick={onCart}>
+            🛒 Cart ({cartCount})
+          </button>
+        </div>
+      </nav>
+
       <h1>Shopping Cart</h1>
 
       {cartItems.length === 0 ? (
@@ -56,17 +79,24 @@ function CartItem({ onContinueShopping }) {
         <>
           {cartItems.map((item) => (
             <div className="cart-item" key={item.name}>
+
               <img
+                className="cart-item-image"
                 src={item.image}
                 alt={item.name}
               />
 
               <div className="cart-details">
-                <h3>{item.name}</h3>
 
-                <p>Unit Price: ₹{item.cost}</p>
+                <h3 className="cart-item-name">
+                  {item.name}
+                </h3>
 
-                <p>
+                <p className="cart-item-price">
+                  Unit Price: ₹{item.cost}
+                </p>
+
+                <p className="cart-item-total">
                   Total: ₹{item.cost * item.quantity}
                 </p>
 
@@ -92,15 +122,17 @@ function CartItem({ onContinueShopping }) {
                 >
                   Delete
                 </button>
+
               </div>
             </div>
           ))}
 
           <div className="cart-summary">
+
             <h2>Grand Total: ₹{totalAmount}</h2>
 
             <button
-              className="checkout-button"
+              className="get-started-button1"
               onClick={() => alert("Checkout Coming Soon!")}
             >
               Checkout
@@ -112,6 +144,7 @@ function CartItem({ onContinueShopping }) {
             >
               Continue Shopping
             </button>
+
           </div>
         </>
       )}

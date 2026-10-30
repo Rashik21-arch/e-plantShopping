@@ -332,3 +332,60 @@
 .product-page > h1 {
   color: #174d2b;
 }
+
+
+/* Cart page styling */
+.cart-container {
+  min-height: 100vh;
+  padding: 40px 7%;
+  background: #f5f8f2;
+  color: #253b2b;
+}
+
+.cart-container > h1 {
+  text-align: center;
+  margin-bottom: 35px;
+  color: #174d2b;
+}
+
+/* Required cart item styling */
+.cart-item-image {
+  width: 150px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-name {
+  color: #174d2b;
+}
+
+.cart-item-price,
+.cart-item-total {
+  margin-bottom: 8px;
+}
+
+/* Delete button */
+.cart-item-delete {
+  background: #c0392b;
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Required Checkout button */
+.get-started-button1 {
+  padding: 12px 22px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  background: #287a3c;
+  cursor: pointer;
+}
+
+.get-started-button1:hover {
+  background: #1d5c2d;
+}
