@@ -20,8 +20,20 @@ function App() {
     0
   );
 
+  const handleGetStartedClick = () => {
+    setPage("plants");
+  };
+
   return (
-    <div>
+    <div className="app-container">
+      {page === "home" && (
+        <>
+          <h1>Welcome to Paradise Nursery</h1>
+          <LandingPage onGetStarted={handleGetStartedClick} />
+          <AboutUs />
+        </>
+      )}
+
       {page !== "home" && (
         <Navbar
           cartCount={cartCount}
@@ -29,13 +41,6 @@ function App() {
           onPlants={() => setPage("plants")}
           onCart={() => setPage("cart")}
         />
-      )}
-
-      {page === "home" && (
-        <>
-          <LandingPage onGetStarted={() => setPage("plants")} />
-          <AboutUs />
-        </>
       )}
 
       {page === "plants" && <ProductList />}
