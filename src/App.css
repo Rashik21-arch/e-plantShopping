@@ -5,13 +5,13 @@
   box-sizing: border-box;
 }
 
-.landing-page {
+.background-image {
   min-height: 80vh;
   background-image: url("https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
-
 .landing-overlay {
   min-height: 80vh;
   background: rgba(0, 0, 0, 0.55);
