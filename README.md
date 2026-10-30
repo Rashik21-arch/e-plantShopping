@@ -1,62 +1,31 @@
+# e-plantShopping
 
-# Paradise Nursery
+## Project Name
+e-plantShopping
 
 ## Project Description
-
-Paradise Nursery is an online houseplant shopping application built using React and Redux Toolkit. It allows users to explore different categories of indoor plants, view product details, add plants to their shopping cart, and manage their purchases.
+e-plantShopping is a React-based online plant shopping application called Paradise Nursery. It allows users to explore different categories of houseplants and add their favourite plants to a shopping cart.
 
 ## Features
-
-- Attractive landing page with Get Started button.
-- About Us section.
-- Three categories of houseplants.
-- 18 unique plant products.
-- Product images, names, descriptions, and prices.
-- Add to Cart functionality.
-- Dynamic shopping cart count.
-- Increase and decrease product quantities.
-- Remove products from the cart.
-- Automatic total price calculation.
-- Checkout Coming Soon message.
-- Continue Shopping option.
+- Browse houseplants across multiple categories.
+- View plant names, descriptions, images and prices.
+- Add plants to the shopping cart.
+- Increase or decrease plant quantities.
+- Remove plants from the cart.
+- View individual item totals and the grand total.
+- Navigate between Home, Plants and Cart pages.
 
 ## Technologies Used
-
-- React.js
+- React
 - JavaScript
 - CSS
 - Redux Toolkit
 - React Redux
 - Vite
 
-## Project Structure
-
-```text
-src/
-├── components/
-│   ├── AboutUs.jsx
-│   ├── CartItem.jsx
-│   ├── LandingPage.jsx
-│   ├── Navbar.jsx
-│   └── ProductList.jsx
-├── data/
-│   └── plants.js
-├── features/
-│   ├── CartSlice.jsx
-│   └── store.js
-├── App.jsx
-├── App.css
-├── index.css
-└── main.jsx
-```
-
 ## How to Run
-
 1. Clone the repository.
 2. Install dependencies using `npm install`.
-3. Start the development server using `npm run dev`.
+3. Start the application using `npm run dev`.
 4. Open the local URL displayed in the terminal.
 
-## Project Name
-
-Paradise Nursery - Shopping Cart Application
