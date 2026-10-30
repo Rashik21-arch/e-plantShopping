@@ -1,25 +1,53 @@
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem, updateQuantity } from "../features/CartSlice";
+import {
+  removeItem,
+  updateQuantity,
+} from "../features/CartSlice";
 
 function CartItem({ onContinueShopping }) {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.items);
+
+  const cartItems = useSelector(
+    (state) => state.cart.items
+  );
+
+  const handleIncrement = (item) => {
+    dispatch(
+      updateQuantity({
+        name: item.name,
+        quantity: item.quantity + 1,
+      })
+    );
+  };
+
+  const handleDecrement = (item) => {
+    dispatch(
+      updateQuantity({
+        name: item.name,
+        quantity: item.quantity - 1,
+      })
+    );
+  };
+
+  const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
+  };
 
   const totalAmount = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) =>
+      total + item.cost * item.quantity,
     0
   );
 
   return (
-    <div className="cart-page">
-      <h1>Your Shopping Cart 🛒</h1>
+    <div className="cart-container">
+      <h1>Shopping Cart</h1>
 
       {cartItems.length === 0 ? (
         <div className="empty-cart">
           <h2>Your cart is empty!</h2>
-          <p>Explore our beautiful collection of plants.</p>
           <button onClick={onContinueShopping}>
             Continue Shopping
           </button>
@@ -27,49 +55,40 @@ function CartItem({ onContinueShopping }) {
       ) : (
         <>
           {cartItems.map((item) => (
-            <div className="cart-item" key={item.id}>
-              <img src={item.image} alt={item.name} />
+            <div className="cart-item" key={item.name}>
+              <img
+                src={item.image}
+                alt={item.name}
+              />
 
               <div className="cart-details">
                 <h3>{item.name}</h3>
-                <p>Unit Price: ₹{item.price}</p>
+
+                <p>Unit Price: ₹{item.cost}</p>
+
                 <p>
-                  Total: ₹{item.price * item.quantity}
+                  Total: ₹{item.cost * item.quantity}
                 </p>
 
                 <div className="quantity-controls">
                   <button
-                    onClick={() =>
-                      dispatch(
-                        updateQuantity({
-                          id: item.id,
-                          quantity: item.quantity - 1,
-                        })
-                      )
-                    }
+                    onClick={() => handleDecrement(item)}
                   >
-                    −
+                    -
                   </button>
 
                   <span>{item.quantity}</span>
 
                   <button
-                    onClick={() =>
-                      dispatch(
-                        updateQuantity({
-                          id: item.id,
-                          quantity: item.quantity + 1,
-                        })
-                      )
-                    }
+                    onClick={() => handleIncrement(item)}
                   >
                     +
                   </button>
                 </div>
 
                 <button
-                  className="delete-button"
-                  onClick={() => dispatch(removeItem(item.id))}
+                  className="cart-item-delete"
+                  onClick={() => handleRemove(item)}
                 >
                   Delete
                 </button>
