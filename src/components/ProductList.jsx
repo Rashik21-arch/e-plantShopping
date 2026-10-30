@@ -44,7 +44,7 @@ function ProductList() {
   const cartItems = useSelector((state) => state.cart.items);
   const [addedToCart, setAddedToCart] = useState({});
 
-const cartItems = useSelector((state) => state.cart.items);
+
 
   const handleAddToCart = (plant) => {
     dispatch(addItem({
