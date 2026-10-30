@@ -44,10 +44,7 @@ function ProductList() {
   const cartItems = useSelector((state) => state.cart.items);
   const [addedToCart, setAddedToCart] = useState({});
 
-  const cartCount = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+const cartItems = useSelector((state) => state.cart.items);
 
   const handleAddToCart = (plant) => {
     dispatch(addItem({
@@ -66,14 +63,7 @@ function ProductList() {
 
   return (
     <div className="product-page">
-      <nav className="navbar">
-        <h2>🌿 Paradise Nursery</h2>
-        <div className="nav-links">
-          <a href="/">Home</a>
-          <a href="#plants">Plants</a>
-          <a href="#cart">🛒 Cart ({cartCount})</a>
-        </div>
-      </nav>
+     
 
       <div id="plants">
         <h1>Our Beautiful Houseplants</h1>
