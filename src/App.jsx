@@ -26,21 +26,21 @@ function App() {
 
   return (
     <div className="app-container">
+      <Navbar
+        cartCount={cartCount}
+        onHome={() => setPage("home")}
+        onPlants={() => setPage("plants")}
+        onCart={() => setPage("cart")}
+      />
+
       {page === "home" && (
         <>
-          <h1>Welcome to Paradise Nursery</h1>
+          <h1 className="welcome-heading">
+            Welcome to Paradise Nursery
+          </h1>
           <LandingPage onGetStarted={handleGetStartedClick} />
           <AboutUs />
         </>
-      )}
-
-      {page !== "home" && (
-        <Navbar
-          cartCount={cartCount}
-          onHome={() => setPage("home")}
-          onPlants={() => setPage("plants")}
-          onCart={() => setPage("cart")}
-        />
       )}
 
       {page === "plants" && <ProductList />}
